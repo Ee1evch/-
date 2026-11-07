@@ -21,11 +21,11 @@ public class MainActivity extends Activity {
  private TextView text(String s,int size) { TextView t=new TextView(this); t.setText(s); t.setTextSize(size); t.setTextColor(0xff16213b); t.setPadding(0,12,0,12); root.addView(t); return t; }
  private Button button(String s,Runnable action) { Button b=new Button(this); b.setText(s); root.addView(b); b.setOnClickListener(v->action.run()); return b; }
  private void base(String title) {
-  ScrollView scroll=new ScrollView(this); root=new LinearLayout(this); root.setOrientation(1); root.setPadding(32,32,32,32); root.setBackgroundColor(0xfff5f7ff); scroll.addView(root); setContentView(scroll); text(title,28);
+  ScrollView scroll=new ScrollView(this); scroll.setFitsSystemWindows(true); root=new LinearLayout(this); root.setOrientation(1); root.setPadding(32,32,32,32); root.setBackgroundColor(0xfff5f7ff); scroll.addView(root); setContentView(scroll); text(title,28);
  }
  private void render() {
   if(prefs.getBoolean("ringing",false)) { getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY); challenge(); return; }
-  getWindow().getDecorView().setSystemUiVisibility(0);
+  getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
   if(prefs.getBoolean("awaiting",false)) { confirmation(); return; }
   base("Проснись ☀");
   text("Будильник с примером и проверкой пробуждения",16);
