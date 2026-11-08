@@ -7,6 +7,7 @@ import android.provider.Settings;
 import java.util.Calendar;
 
 final class Alarms {
+ static final long CHECK_DELAY_MS = 120_000L;
  static final String PREF="alarm", RING="ring", CHECK="check", MISSED="missed";
  static PendingIntent intent(Context c, String action) {
   return PendingIntent.getBroadcast(c, action.equals(RING)?1:action.equals(CHECK)?2:3,
